@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="roadFullAddr" type="hidden" value="{{roadFullAddr}}">
+
+    <!-- 쿼리스트링을 action에 바로 넣어주면 안되고 form 태그에 하나씩 넣어줘야함 -->
+    <form action="{{jusoUrl}}" method="get">
+        <input type="hidden" name="confmKey" value="{{confmKey}}">
+        <input type="hidden" name="returnUrl" value="{{returnUrl}}">
+        <input type="hidden" name="resultType" value="{{resultType}}">
+        <button id="btn-submit" type="submit"></button>
+    </form>
+
+    <script>
+        let roadFullAddr = $("#roadFullAddr").val();
+
+        if (roadFullAddr == "N") {
+            $("#btn-submit").click(); // 저 id 클릭해! , click() 내부에 람다식 넣는 건 클릭했을 때 이거 해!
+        } else {
+            opener.jusoCallback(roadFullAddr);
+            window.close();
+        }
+
+
+    </script>
+</body>
+
+</html>
