@@ -17,13 +17,26 @@
     </a>
     <br>
     <button onclick="jusoPopup();">주소찾기 버튼</button> <br>
-    <input type="text" value="">
+    <input id="roadFullAddr" type="text" value="">
 
     <script>
         function jusoPopup() {
             let jusoUrl = $("#juso-url").val();
             window.open(jusoUrl, "pop", "width=570, height=420"); // 새 창 띄우는 메서드
+            // window.close();
         }
+
+        // pooling? 폴링?으로 짜면 편한데 이런건 push 서버 만드는게 최고 (웹 소켓 공부) 
+        async function jusoCheck() {
+            let response = await fetch("/juso/check");
+            let responseParse = await response.text();
+
+            console.log(responseParse);
+
+            $("#roadFullAddr").val(responseParse);
+        }
+
+        setInterval(jusoCheck, 1000);
     </script>
 </body>
 
