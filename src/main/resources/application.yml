@@ -1,0 +1,6 @@
+server:
+  servlet:
+    encoding:
+      charset: utf-8
+      enabled: true # 강제로 utf-8 설정
+      force: true
